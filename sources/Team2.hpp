@@ -6,22 +6,15 @@
 #include "Cowboy.hpp"
 #include "OldNinja.hpp"
 #include "Point.hpp"
+#include "Team.hpp"
 #include "TrainedNinja.hpp"
 #include "YoungNinja.hpp"
 
-// TODO: add copy and assignment constructors
 namespace ariel {
-class Team2 {
-   private:
-    std::vector<Character *> characters_;  // leader must be at index 0.
-    Character *leader_ = nullptr;
-
+class Team2 : public Team {
    public:
     Team2(Character *leader);
-    virtual ~Team2();
-    void add(Character *character);
-    void attack(Team2 *enemy);
-    int stillAlive() const;
-    void print() const;
+    void attack(Team *enemy) override;
+    void print() const override;
 };
 }  // namespace ariel
