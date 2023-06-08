@@ -1,5 +1,7 @@
 #include "Team2.hpp"
 
+#include <algorithm>
+
 using namespace ariel;
 
 Team2::Team2(Character *leader) : Team(leader) {
@@ -18,10 +20,10 @@ void Team2::attack(Team *enemy_team) {
     if (enemy_team == this) {
         throw std::invalid_argument("Team can't self harm.");
     }
-    std::vector<Character *> characters = getTeam();
+    std::vector<Character *> characters_ = getTeam();
 
-    // sort the characters vector by character type
-    std::sort(characters.begin(), characters.end(), [](Character *a, Character *b) {
+    // sort the characters_ vector by character type
+    std::sort(characters_.begin(), characters_.end(), [](Character *a, Character *b) {
         if (dynamic_cast<Cowboy *>(a) && !dynamic_cast<Cowboy *>(b)) {
             return true;
         } else {
@@ -47,7 +49,7 @@ void Team2::attack(Team *enemy_team) {
 
     // Attack enemy with all living members
     Character *enemy_char = getNearestEnemy(enemy_team);
-    for (auto character : characters) {
+    for (auto character : characters_) {
         if (!enemy_char) {
             return;
         }
