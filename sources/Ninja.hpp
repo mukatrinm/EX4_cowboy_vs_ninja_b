@@ -11,7 +11,7 @@ class Ninja : public Character {
     void SetSpeed(int speed);
 
    public:
-    Ninja(const std::string name, const Point &position, const int hit_points);
+    Ninja(std::string name, const Point &position, int hit_points);
     void move(Character *enemy);
     void slash(Character *enemy);
     std::string print() const override;

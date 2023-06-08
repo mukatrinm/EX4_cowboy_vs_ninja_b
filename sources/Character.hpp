@@ -13,7 +13,7 @@ class Character {
     bool is_in_team_ = false;
 
    public:
-    Character(const std::string name, const Point &location, const int hit_points);
+    Character(std::string name, const Point &location, int hit_points);
     Character(const Character &other) = delete;
     Character(Character &&other) = delete;
     virtual ~Character() = default;
@@ -26,7 +26,7 @@ class Character {
     void hit(int damage);
     std::string getName() const;
     const Point &getLocation() const;
-    void setLocation(const Point location);
+    void setLocation(Point location);
     int getHitPoints() const;
     virtual std::string print() const = 0;
     void setInTeam();

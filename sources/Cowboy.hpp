@@ -5,10 +5,10 @@
 namespace ariel {
 class Cowboy : public Character {
    private:
-    int num_of_bullets_ = 6;
+    int num_of_bullets_;
 
    public:
-    Cowboy(const std::string name, const Point &position);
+    Cowboy(std::string name, const Point &position);
     void shoot(Character *enemy);
     bool hasboolets() const;
     int NumOfBullets() const;
