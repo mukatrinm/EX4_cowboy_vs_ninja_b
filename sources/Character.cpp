@@ -4,36 +4,37 @@
 
 using namespace ariel;
 
-Character::Character(const std::string name, const Point &hit_point) : name_{name}, hit_point_{hit_point} {
-}
-
-void Character::setHealth(int health) {
-    if (health < 0) {
-        throw std::invalid_argument("health can't be negative.");
-    }
-
-    health_ = health;
+Character::Character(const std::string name, const Point &location, const int hit_points) : name_{name}, current_position_(location), hit_points_{hit_points} {
 }
 
 bool Character::isAlive() const {
-    return health_ > 0;
+    return hit_points_ > 0;
 }
 
 double Character::distance(const Character *other) const {
-    return 0.0;
+    return current_position_.distance(other->getLocation());
 }
 
 void Character::hit(int damage) {
-    health_ -= damage;
+    hit_points_ -= damage;
 }
 
 std::string Character::getName() const {
     return name_;
 }
 
-Point Character::getLocation() const {
-    return hit_point_;
+const Point &Character::getLocation() const {
+    return current_position_;
 }
 
-void Character::print() const {
+int ariel::Character::getHitPoints() const {
+    return hit_points_;
+}
+
+void Character::setInTeam() {
+    is_in_team_ = true;
+}
+
+bool Character::isInTeam() const {
+    return is_in_team_;
 }

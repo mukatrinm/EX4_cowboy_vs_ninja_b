@@ -8,19 +8,20 @@ namespace ariel {
 class Character {
    private:
     const std::string name_;
-    int health_ = 0;
-    Point hit_point_;
-
-   protected:
-    void setHealth(int health);
+    Point current_position_;
+    int hit_points_;
+    bool is_in_team_ = false;
 
    public:
-    Character(const std::string name, const Point &hit_point);
+    Character(const std::string name, const Point &location, const int hit_points);
     bool isAlive() const;
     double distance(const Character *other) const;
     void hit(int damage);
     std::string getName() const;
-    Point getLocation() const;
-    void print() const;
+    const Point &getLocation() const;
+    int getHitPoints() const;
+    virtual std::string print() const = 0;
+    void setInTeam();
+    bool isInTeam() const;
 };
 }  // namespace ariel

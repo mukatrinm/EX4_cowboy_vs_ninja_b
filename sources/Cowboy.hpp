@@ -11,6 +11,8 @@ class Cowboy : public Character {
     Cowboy(const std::string name, Point &position);
     void shoot(Character *enemy);
     bool hasboolets() const;
+    int NumOfBullets() const;
     void reload();
+    std::string print() const override;
 };
 }  // namespace ariel
