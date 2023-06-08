@@ -8,11 +8,19 @@ Cowboy::Cowboy(const std::string name, const Point& position) : Character(name, 
 }
 
 void Cowboy::shoot(Character* enemy) {
-    if (isAlive()) {
-        if (hasboolets()) {
-            enemy->hit(10);
-            num_of_bullets_--;
-        }
+    if (!isAlive()) {
+        throw std::runtime_error("cowboy can't shoot when he is dead.");
+    }
+    if (enemy->isAlive()) {
+        throw std::runtime_error("cowboy can't shoot a dead enemy.");
+    }
+    if (this == enemy) {
+        throw std::runtime_error("cowboy can't harm himself.");
+    }
+
+    if (hasboolets()) {
+        enemy->hit(10);
+        num_of_bullets_--;
     }
 }
 
