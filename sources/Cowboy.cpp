@@ -4,7 +4,7 @@
 
 using namespace ariel;
 
-Cowboy::Cowboy(const std::string name, Point& position) : Character(name, position, 110) {
+Cowboy::Cowboy(const std::string name, const Point& position) : Character(name, position, 110) {
 }
 
 void Cowboy::shoot(Character* enemy) {

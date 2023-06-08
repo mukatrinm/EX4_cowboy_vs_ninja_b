@@ -14,6 +14,13 @@ class Character {
 
    public:
     Character(const std::string name, const Point &location, const int hit_points);
+    Character(const Character &other) = delete;
+    Character(Character &&other) = delete;
+    virtual ~Character() = default;
+
+    Character &operator=(Character &other) = delete;
+    Character &operator=(Character &&other) = delete;
+
     bool isAlive() const;
     double distance(const Character *other) const;
     void hit(int damage);

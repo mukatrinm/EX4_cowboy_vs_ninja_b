@@ -2,7 +2,7 @@
 
 using namespace ariel;
 
-Ninja::Ninja(const std::string name, const Point& position) : Character(name, position) {
+Ninja::Ninja(const std::string name, const Point& position, const int hit_points) : Character(name, position, hit_points) {
 }
 
 void Ninja::SetSpeed(int speed) {
@@ -16,4 +16,15 @@ void Ninja::slash(Character* enemy) {
     if (isAlive() && getLocation().distance(enemy->getLocation()) < 1) {
         enemy->hit(31);
     }
+}
+
+std::string Ninja::print() const {
+    std::string ret = "";
+    ret += "name: C(" + getName() + ")";
+    if (isAlive()) {
+        ret += ", hit_points: " + std::to_string(getHitPoints());
+    }
+
+    ret += ", current_location: " + getLocation().toString();
+    return ret;
 }

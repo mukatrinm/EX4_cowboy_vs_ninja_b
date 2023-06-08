@@ -4,7 +4,6 @@
 
 using namespace ariel;
 
-OldNinja::OldNinja(const std::string name, const Point& position) : Ninja(name, position) {
-    setHealth(150);
+OldNinja::OldNinja(const std::string name, const Point& position) : Ninja(name, position, 150) {
     SetSpeed(8);
 }

@@ -6,17 +6,20 @@ Team2::Team2(Character* leader) {
     characters_.push_back(leader);
 }
 
-// Team2::~Team2() {
-//     // TODO
-// }
+Team2::~Team2() {
+    // TODO
+}
 
 void Team2::add(Character* character) {
-    if (character != nullptr) {
-        if (characters_.size() < 10) {
-            characters_.push_back(character);
-        } else {
-            delete character;  // TODO: make sure i need to really delete the character if the team is full
-        }
+    if (character == nullptr) {
+        return;
+    }
+
+    if (characters_.size() < 10) {
+        characters_.push_back(character);
+    } else {
+        // delete character;  // TODO: make sure i need to really delete the character if the team is full
+        throw std::runtime_error("Team is full.");
     }
 }
 

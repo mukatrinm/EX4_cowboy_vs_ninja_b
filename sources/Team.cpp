@@ -8,9 +8,9 @@ Team::Team(Character* leader) {
     characters_.push_back(leader);
 }
 
-// Team::~Team() {
-//     // TODO
-// }
+Team::~Team() {
+    // TODO
+}
 
 void Team::add(Character* character) {
     if (character == nullptr) {

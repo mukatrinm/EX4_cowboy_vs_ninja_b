@@ -18,7 +18,7 @@ class Team {
 
    public:
     Team(Character *leader);
-    // ~Team();
+    virtual ~Team();
     void add(Character *character);
     void attack(Team *enemy);
     int stillAlive() const;

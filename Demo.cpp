@@ -22,7 +22,7 @@ int main() {
     Cowboy *tom = new Cowboy("Tom", a);
     OldNinja *sushi = new OldNinja("sushi", b);
     tom->shoot(sushi);
-    //  cout << tom->print() << endl;
+    cout << tom->print() << endl;
 
     sushi->move(tom);
     sushi->slash(tom);
@@ -33,7 +33,6 @@ int main() {
     // Team b(tom); should throw tom is already in team a
 
     Team team_B(sushi);
-    //   TrainedNinja
     team_B.add(new TrainedNinja("Hikari", Point(12, 81)));
 
     while (team_A.stillAlive() > 0 && team_B.stillAlive() > 0) {

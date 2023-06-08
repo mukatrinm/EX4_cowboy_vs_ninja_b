@@ -8,7 +8,7 @@ class Cowboy : public Character {
     int num_of_bullets_ = 6;
 
    public:
-    Cowboy(const std::string name, Point &position);
+    Cowboy(const std::string name, const Point &position);
     void shoot(Character *enemy);
     bool hasboolets() const;
     int NumOfBullets() const;
