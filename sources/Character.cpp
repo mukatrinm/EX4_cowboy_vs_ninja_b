@@ -16,6 +16,10 @@ double Character::distance(const Character *other) const {
 }
 
 void Character::hit(int damage) {
+    if (damage < 0) {
+        throw std::invalid_argument("damage can't be negative.");
+    }
+
     hit_points_ -= damage;
 }
 
@@ -25,6 +29,10 @@ std::string Character::getName() const {
 
 const Point &Character::getLocation() const {
     return current_position_;
+}
+
+void Character::setLocation(const Point location) {
+    current_position_ = location;
 }
 
 int ariel::Character::getHitPoints() const {

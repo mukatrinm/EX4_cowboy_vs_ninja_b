@@ -11,8 +11,9 @@
 namespace ariel {
 class Team {
    private:
-    std::vector<Character *> characters_;  // leader must be at index 0.
+    std::vector<Character *> characters;  // leader must be at index 0.
     Character *leader_ = nullptr;
+    // bool sortByCharacter(Character *char1, Character *char2);
 
    public:
     Team(Character *leader);
@@ -20,6 +21,13 @@ class Team {
     Team(Team &&team) = delete;
     virtual ~Team();
 
+   protected:
+    Character *getNearestEnemy(Team *enemy_team) const;
+    Character *getNearestToLeader() const;
+    const Character *getLeader() const;
+    void setLeader(Character * new_leader);
+
+   public:
     void add(Character *character);
     virtual void attack(Team *enemy);
     int stillAlive() const;

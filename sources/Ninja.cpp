@@ -10,13 +10,14 @@ void Ninja::SetSpeed(int speed) {
 }
 
 void Ninja::move(Character* enemy) {
+    setLocation(Point::moveTowards(getLocation(), enemy->getLocation(), speed_));
 }
 
 void Ninja::slash(Character* enemy) {
     if (!isAlive()) {
         throw std::runtime_error("ninja can't slash when he is dead.");
     }
-    if (enemy->isAlive()) {
+    if (!enemy->isAlive()) {
         throw std::runtime_error("ninja can't slash a dead enemy.");
     }
     if (this == enemy) {
@@ -24,7 +25,7 @@ void Ninja::slash(Character* enemy) {
     }
 
     if (getLocation().distance(enemy->getLocation()) < 1) {
-        enemy->hit(31);
+        enemy->hit(40);
     }
 }
 

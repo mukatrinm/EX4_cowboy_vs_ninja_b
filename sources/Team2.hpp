@@ -14,7 +14,7 @@ namespace ariel {
 class Team2 : public Team {
    public:
     Team2(Character *leader);
-    void attack(Team *enemy) override;
+    void attack(Team *enemy_team) override;
     void print() const override;
 };
 }  // namespace ariel

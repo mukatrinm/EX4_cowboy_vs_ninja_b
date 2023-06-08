@@ -26,6 +26,7 @@ class Character {
     void hit(int damage);
     std::string getName() const;
     const Point &getLocation() const;
+    void setLocation(const Point location);
     int getHitPoints() const;
     virtual std::string print() const = 0;
     void setInTeam();

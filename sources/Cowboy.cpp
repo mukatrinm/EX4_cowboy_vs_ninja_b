@@ -11,7 +11,7 @@ void Cowboy::shoot(Character* enemy) {
     if (!isAlive()) {
         throw std::runtime_error("cowboy can't shoot when he is dead.");
     }
-    if (enemy->isAlive()) {
+    if (!enemy->isAlive()) {
         throw std::runtime_error("cowboy can't shoot a dead enemy.");
     }
     if (this == enemy) {
@@ -33,6 +33,10 @@ int ariel::Cowboy::NumOfBullets() const {
 }
 
 void Cowboy::reload() {
+    if (!isAlive()) {
+        throw std::runtime_error("can't reload while dead.");
+    }
+
     num_of_bullets_ = 6;
 }
 
