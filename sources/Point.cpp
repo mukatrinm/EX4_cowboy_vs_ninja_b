@@ -8,8 +8,8 @@ using namespace ariel;
 Point::Point(double x_coord, double y_coord) : x_coord_{x_coord}, y_coord_{y_coord} {
 }
 
-Point::Point(const Point& other) : x_coord_{other.x_coord_}, y_coord_{other.y_coord_} {
-}
+// Point::Point(const Point& other) : x_coord_{other.x_coord_}, y_coord_{other.y_coord_} {
+// }
 
 double Point::distance(const Point& point) const {
     double d_x = x_coord_ - point.x_coord_;
