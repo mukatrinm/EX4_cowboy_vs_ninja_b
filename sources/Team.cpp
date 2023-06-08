@@ -1,19 +1,30 @@
 #include "Team.hpp"
 
+#include <algorithm>
+#include <cmath>
 #include <stdexcept>
 
 using namespace ariel;
 
 Team::Team(Character *leader) {
-    add(leader);
+    if (leader == nullptr) {
+        throw std::invalid_argument("leader can't be null.");
+    }
+    if (leader->isInTeam()) {
+        throw std::runtime_error("leader is already in a different team\n");
+    }
+
+    characters_.push_back(leader);
+    leader->setInTeam();
+    leader_ = leader;
 }
 
 Team::~Team() {
-    for (Character *character : characters) {
+    for (Character *character : characters_) {
         delete character;
     }
 
-    characters.clear();
+    characters_.clear();
 }
 
 void Team::add(Character *character) {
@@ -24,8 +35,8 @@ void Team::add(Character *character) {
         throw std::runtime_error("Character is already in a different team\n");
     }
 
-    if (characters.size() < 10) {
-        characters.push_back(character);
+    if (characters_.size() < 10) {
+        characters_.push_back(character);
         character->setInTeam();
     } else {
         throw std::runtime_error("Team is full.");
@@ -51,7 +62,7 @@ Character *Team::getNearestToLeader() const {
     Character *closest_char = nullptr;
     double min_dist = INFINITY;
 
-    for (auto character : characters) {
+    for (auto character : characters_) {
         if ((character->isAlive()) && (character != leader_)) {
             double dist = leader_->distance(character);
             if (dist < min_dist) {
@@ -104,28 +115,26 @@ void Team::attack(Team *enemy_team) {
     if (enemy_team == this) {
         throw std::invalid_argument("Team can't self harm.");
     }
-
     // sort the characters vector by character type
-    std::sort(characters.begin(), characters.end(), [](Character *a, Character *b) {
+    std::sort(characters_.begin(), characters_.end(), [](Character *a, Character *b) {
         if (dynamic_cast<Cowboy *>(a) && !dynamic_cast<Cowboy *>(b)) {
             return true;
         } else {
             return false;
         }
     });
-
     // Check if leaders are alive
     if (!(leader_->isAlive())) {
         leader_ = getNearestToLeader();
-
+        std::cout << leader_->print() << std::endl;
         if (!leader_) {
+            std::cout << "ooo leader" << std::endl;
             return;
         }
     }
-
     // Attack enemy with all living members
     Character *enemy_char = getNearestEnemy(enemy_team);
-    for (auto character : characters) {
+    for (auto character : characters_) {
         if (!enemy_char) {
             return;
         }
@@ -156,7 +165,7 @@ void Team::attack(Team *enemy_team) {
 
 int Team::stillAlive() const {
     int cnt = 0;
-    for (const Character *character : characters) {
+    for (const Character *character : characters_) {
         if (character->isAlive()) {
             cnt++;
         }
@@ -166,11 +175,11 @@ int Team::stillAlive() const {
 }
 
 const std::vector<Character *> &Team::getTeam() const {
-    return characters;
+    return characters_;
 }
 
 void Team::print() const {
-    for (Character *character : characters) {
-        character->print();
+    for (Character *character : characters_) {
+        std::cout << character->print() << std::endl;
     }
 }
